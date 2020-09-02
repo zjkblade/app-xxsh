@@ -1,0 +1,29 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no,width=device-width"><link href="../../css/common.css" rel="stylesheet"><style>#app{position:relative;width:100vw;background:var(--color-gray1)}.user-grids .user-grid{width:25%;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:10px 0}.user-grids .user-grid>div:last-child{margin-top:5px;font-size:13px}</style><script src="../../script/lib/app.responsive.js"></script><script src="../../script/lib/vue.min.js"></script><script src="../../script/lib/api.js"></script><script src="../../script/lib/jquery-3.4.1.min.js"></script><script src="../../script/common.js"></script><script src="../../script/service.js"></script><script src="../../script/mixins.js"></script></head><body><div id="app" style="padding-top:1.9rem"><div id="header" class="fixed top eui-block bg-red-linear"><div class="flex jc-end ai-center color-white padding-right-10"><div class="flex ai-center" @click="util.app.openWindow('win-user-sign', './user_sign_win.html')"><span class="fs-25 iconfont icon-qiandao"></span> <span class="fs-12">已签到</span></div><div class="flex ai-center margin-left-10"><span class="fs-25 iconfont icon-kefu"></span></div><div class="flex ai-center margin-left-10" @click="util.app.openWindow('win-user-setting', './user_setting_win.html')"><span class="fs-25 iconfont icon-shezhi"></span></div></div><div class="eui-list"><div class="eui-item"><div class="eui-item-left"><div class="eui-size-60 round bg-gray3"></div></div><div class="eui-item-body color-white"><div class="margin-bottom-10 flex-column ai-end"><span>名字</span> <span class="fs-12 margin-left-5">决策委员</span></div><div class="flex fs-12"><div class="bg-orange radius-7 padding-2 padding-lr-10">注册天数 11</div><div class="bg-orange radius-7 padding-2 padding-lr-10 margin-left-5"><span>ID JDkD1Ng1</span> <span class="margin-left-5 iconfont icon-copy"></span></div></div></div></div></div><div class="padding-tb-10 color-white"><div class="flex fs-13"><div class="flex-equal flex jc-center" @click="util.app.openWindow('win-vitality-value', './vitality_value_win.html')"><span>今日贡献值</span></div><div class="flex-equal flex jc-center border-left border-right" @click="util.app.openWindow('win-vitality-score', './vitality_score_win.html')"><span>活力分</span></div><div class="flex-equal flex jc-center"><span>折扣</span></div></div><div class="flex margin-top-5"><div class="flex-equal flex jc-center" @click="util.app.openWindow('win-vitality-value', './vitality_value_win.html')"><span>340</span></div><div class="flex-equal flex jc-center" @click="util.app.openWindow('win-vitality-score', './vitality_score_win.html')"><span>246.3371</span></div><div class="flex-equal flex jc-center"><span>0.00</span></div></div></div></div><div class="padding-10"><div class="bg-white radius-5"><div class="eui-list"><div class="eui-item"><div class="eui-item-left">我的订单</div><div class="eui-item-right"><span>查看全部订单</span> <span class="iconfont icon-right"></span></div></div></div><div class="flex padding-tb-10"><div class="flex-equal flex flex-column jc-center ai-center" :key="state.name" v-for="state in states" @click="stateClick(state)"><div class="fs-30 iconfont" :class="[state.icon]"></div><div class="fs-14">{{state.label}}</div></div></div></div></div><div class="padding-lr-10"><div style="width:100%;height:100px" class="image-default radius-7"></div></div><div class="padding-tb-5 padding-lr-10">我的服务</div><div class="padding-10"><div class="bg-white padding-5 radius-5"><div class="flex user-grids"><div class="user-grid"><div class="eui-size-45 round border"></div><div>每日必看</div></div><div class="user-grid" @click="openWindowAuth('win-team', './team_win.html')"><div class="eui-size-45 round border"></div><div>我的团队</div></div><div class="user-grid" @click="openWindowAuth('win-city', './city_win.html')"><div class="eui-size-45 round border"></div><div>城市俱乐部</div></div><div class="user-grid"><div class="eui-size-45 round border"></div><div>数据查看</div></div></div><div class="flex user-grids"><div class="user-grid"><div class="eui-size-45 round border"></div><div>城市排行</div></div><div class="user-grid"><div class="eui-size-45 round border"></div><div>邀请好友</div></div><div class="user-grid"><div class="eui-size-45 round border"></div><div>我的分销</div></div><div class="user-grid"><div class="eui-size-45 round border"></div><div>决策委员</div></div></div><div class="flex user-grids"><div class="user-grid"><div class="eui-size-45 round border"></div><div>白皮书</div></div><div class="user-grid"><div class="eui-size-45 round border"></div><div>在线客服</div></div></div></div></div></div><script>new Vue({
+    el     : '#app',
+    mixins : [frmpage],
+    data   : function () {
+      return {
+        frm   : './user_center_frm.html',
+        states: [
+          {name: 'DFK', label: '待付款', icon: 'icon-daifukuan'},
+          {name: 'DFH', label: '待发货', icon: 'icon-daifahuo'},
+          {name: 'DSH', label: '待收货', icon: 'icon-daishouhuo'},
+          {name: 'DPJ', label: '待评价', icon: 'icon-daipingjia'},
+          {name: 'SHH', label: '售后', icon: 'icon-shouhou'},
+        ]
+      };
+    },
+    methods: {
+      stateClick(state) {
+        console.info(state)
+      },
+      openWindowAuth(name, url) {
+        util.app.openWindow(name, url)
+        // if (util.app.storage('token')) {
+        //   util.app.openWindow(name, url)
+        // } else {
+        //  util.app.openWindow('win-login', '../account/login_win.html')
+        // }
+      }
+    }
+  })</script></body></html>
